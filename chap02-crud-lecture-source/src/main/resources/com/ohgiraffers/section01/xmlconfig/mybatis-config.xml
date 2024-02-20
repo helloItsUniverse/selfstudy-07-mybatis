@@ -1,5 +1,3 @@
-<!-- 긁어올 주소: https://mybatis.org/mybatis-3/getting-started.html  -->
-
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
@@ -7,7 +5,7 @@
 <configuration>
     <environments default="dev">
         <environment id="dev">
-            <transactionManager type="JDBC"/>
+            <transactionManager type="jdbc"></transactionManager>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
                 <property name="url" value="jdbc:mysql://localhost:3306/menudb"/>
@@ -17,6 +15,6 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="mapper.xml"/>
+        <mapper resource="com/ohgiraffers/section01/xmlconfig/menu-mapper.xml"/>
     </mappers>
 </configuration>

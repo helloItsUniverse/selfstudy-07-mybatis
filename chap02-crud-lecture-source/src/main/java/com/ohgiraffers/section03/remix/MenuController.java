@@ -1,26 +1,26 @@
-package com.ohgiraffers.section01.xmlconfig;
+package com.ohgiraffers.section03.remix;
 
 import java.util.List;
 import java.util.Map;
 
 public class MenuController {
 
-    private final MenuService menuService;  // 아주 강한 간결함, 강결합: 무조건 컨트롤러에게 주입을 받아야한다.
-    private final PrintResult printResult;      // 결과 페이지에 해당하는 (View 개념) 클래스
+    private final MenuService menuService;
+    private final PrintResult printResult;
 
     public MenuController() {
-        menuService = new MenuService();
-        printResult = new PrintResult();
+        this.menuService = new MenuService();
+        this.printResult = new PrintResult();
     }
 
-    public void findAllMenus() {
+    public void findAllMenu() {
 
-        List<MenuDTO> menuList = menuService.findAllMenus();
+        List<MenuDTO> menus = menuService.findAllMenu();
 
-        if (!menuList.isEmpty()) {
-            printResult.printMenus(menuList);
+        if (!menus.isEmpty()) {
+            printResult.printMenus(menus);
         } else {
-            printResult.printErrorMessage("\n텅~ 조회할 메뉴가 없습니다.\n");
+            printResult.printErrorMessage("전체 메뉴 조회 실패!");
         }
     }
 
@@ -38,6 +38,7 @@ public class MenuController {
     }
 
     public void registMenu(Map<String, String> parameter) {
+
         String menuName = parameter.get("menuName");
         int menuPrice = Integer.valueOf(parameter.get("menuPrice"));
         int categoryCode = Integer.valueOf(parameter.get("categoryCode"));

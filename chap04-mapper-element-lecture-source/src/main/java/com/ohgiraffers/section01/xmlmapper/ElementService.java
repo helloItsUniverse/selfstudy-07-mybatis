@@ -23,9 +23,19 @@ public class ElementService {
         List<MenuAndCategoryDTO> menus = mapper.selectResultMapAssociationTest();
         menus.forEach(System.out::println);
 
-        System.out.println("첫 번째 메뉴의 카테고리명 볼래: " + menus.get(0).getCategory().getCategoryName());
+//        System.out.println("첫 번째 메뉴의 카테고리명 볼래: " + menus.get(0).getCategory().getCategoryName());
 
         sqlSession.close();
     }
 
+    public void selectResultMapCollectionTest() {
+        SqlSession sqlSession = getSqlSession();
+        ElementMapper mapper = sqlSession.getMapper(ElementMapper.class);
+
+        // one-to-many: 한개의 카테고리가 여러개의 메뉴 가짐
+        List<CategoryAndMenuDTO> categories = mapper.selectResultMapCollectionTest();
+        categories.forEach(System.out::println);
+
+        sqlSession.close();
+    }
 }
